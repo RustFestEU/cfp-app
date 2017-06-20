@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   helper_method :program_mode?
   helper_method :schedule_mode?
   helper_method :program_tracks
+  helper_method :event_url
 
   before_action :current_event
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -54,6 +55,13 @@ class ApplicationController < ActionController::Base
     @current_event = Event.find_by(id: event_id).try(:decorate)
     session[:current_event_id] = @current_event.try(:id)
     @current_event
+  end
+
+  def event_url(event, options = {})
+    host = event.domain if event.domain.present?
+    host = host || ENV['HOST']
+    options.merge!(host: host)
+    super(event.slug, options)
   end
 
   def pundit_user
@@ -102,7 +110,7 @@ class ApplicationController < ActionController::Base
         :name, :contact_email, :slug, :url, :valid_proposal_tags,
         :valid_review_tags, :custom_fields_string, :state, :guidelines,
         :closes_at, :speaker_notification_emails, :accept, :reject,
-        :waitlist, :opens_at, :start_date, :end_date)
+        :waitlist, :opens_at, :start_date, :end_date, :domain)
   end
 
   def render_json(object, options={})

@@ -254,8 +254,10 @@ end
 #  speaker_notification_emails :text             default({:accept=>"", :reject=>"", :waitlist=>""})
 #  created_at                  :datetime
 #  updated_at                  :datetime
+#  domain                      :string
 #
 # Indexes
 #
-#  index_events_on_slug  (slug)
+#  index_events_on_domain  (domain)
+#  index_events_on_slug    (slug)
 #

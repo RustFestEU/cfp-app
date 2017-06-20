@@ -36,7 +36,7 @@ class ProposalsController < ApplicationController
     else
       flash[:danger] = "There was a problem confirming your participation in #{@proposal.event.name}: #{@proposal.errors.full_messages.join(', ')}"
     end
-    redirect_to event_proposal_path(slug: @proposal.event.slug, uuid: @proposal)
+    redirect_to event_proposal_path(slug: @proposal.event, uuid: @proposal)
   end
 
   def update_notes

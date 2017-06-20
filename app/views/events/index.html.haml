@@ -1,5 +1,5 @@
 - events.each do |event|
   .event
     %h1
-      = link_to event.name, event_path(event.slug), class: 'event-title'
+      = link_to event.name, event_url(event), class: 'event-title'
       %small= event.status

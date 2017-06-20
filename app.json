@@ -18,6 +18,10 @@
       "description": "Timezone for the Rails app",
       "value": "Mountain Time (US & Canada)"
     },
+    "HOST": {
+      "description": "The main hostname of the app.",
+      "required": true
+    },
     "MAIL_HOST": {
       "description": "The hostname from which emails will originate.",
       "required": true
