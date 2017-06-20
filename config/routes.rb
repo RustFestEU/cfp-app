@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'home#show'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  get '/users/auth/github/callback/:target' => 'trampolin#redirect', :constraints => { :target => /[\w+\.]+/ }
 
   get '/profile' => 'profiles#edit', as: :edit_profile
   patch '/profile' => 'profiles#update'
